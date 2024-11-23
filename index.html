@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #output {
+            margin: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="output"></div>
+
+    <button onclick="move('rock')">Rock</button>
+    <button onclick="move('paper')">Paper</button>
+    <button onclick="move('scissor')">Scissor</button>
+
+    <script>
+        function getComputerMove() {
+            const randomNumber = Math.random();
+
+            if (randomNumber < 1 / 3) return 'rock';
+            if (randomNumber < 2 / 3) return 'paper';
+            return 'scissor';
+        }
+
+        function determineWinner(userMove, computerMove) {
+            if (userMove === computerMove) return 'tie';
+
+            if (
+                (userMove === 'rock' && computerMove === 'scissor') ||
+                (userMove === 'paper' && computerMove === 'rock') ||
+                (userMove === 'scissor' && computerMove === 'paper')
+            )
+                return 'You Win';
+            return 'You Lose';
+
+        }
+
+        function move(userMove) {
+            const computerMove = getComputerMove();
+
+            const result = determineWinner(userMove, computerMove);
+
+            document.getElementById('output').innerHTML = `user : ${userMove}, Computer: ${computerMove} and result: ${result}`
+
+            alert(`user : ${userMove}, Computer: ${computerMove} and result: ${result}`);
+        }
+    </script>
+</body>
+
+</html>
